@@ -22,7 +22,7 @@ console.log(enemyNames[1]);
 console.log(enemyNames[2]);
 
 var enemyHealth = 50;
-var enenyAttack = 12;
+var enemyAttack = 12;
 
 
 for(var i = 0; i < enemyNames.length; i++) {
