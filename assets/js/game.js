@@ -6,24 +6,31 @@
 //if leave alert good bye and exit, if an invalid optin call shop() again
 
 
-
-
-
-
 var playerName = window.prompt("What is your robot's name?");
 var playerHealth = 100;
 var playerAttack = 10;
 var playerMoney = 10;
 
+
+//function to generate random numeri value
+var randomNumber = function(min, max) {
+  var value = Math.floor(Math.random() * (max - min + 1) + min);
+
+  return value
+};
+
+
+
+
 var enemyNames = ['Roborto', 'Amy Android', 'Robo Trumble'];
-var enemyHealth = 50;
+var enemyHealth = randomNumber(40, 60);
 var enemyAttack = 12;
 
 console.log(enemyNames);
 console.log(enemyNames.length);
 console.log(enemyNames[0]);
 //console.log(enemyNames[3]);
-console.log(playerMoney);
+
 // fight function (now with parameter for enemy's name)
 var fight = function(enemyName) {
   while (playerHealth > 0 && enemyHealth > 0) {
@@ -46,7 +53,9 @@ var fight = function(enemyName) {
     }
 
     // remove enemy's health by subtracting the amount set in the playerAttack variable
-    enemyHealth = Math.max(0, enemyHealth - playerAttack);
+    var damage = randomNumber(playerAttack - 3, playerAttack);
+
+    enemyHealth = Math.max(0, enemyHealth - damage);
     console.log(
       playerName + ' attacked ' + enemyName + '. ' + enemyName + ' now has ' + enemyHealth + ' health remaining.'
     );
@@ -65,7 +74,9 @@ var fight = function(enemyName) {
     }
 
     // remove players's health by subtracting the amount set in the enemyAttack variable
-    playerHealth = Math.max(0, playerHealth - enemyAttack);
+    var damage = randomNumber(enemyAttack - 3, enemyAttack);
+
+    playerHealth = Math.max(0, playerHealth - damage);
     console.log(
       enemyName + ' attacked ' + playerName + '. ' + playerName + ' now has ' + playerHealth + ' health remaining.'
     );
@@ -140,6 +151,8 @@ default:
 
 }
 
+
+
 //function to start new game
 var startGame = function() {
     //reset player stats
@@ -158,7 +171,7 @@ for (var i = 0; i < enemyNames.length; i++) {
     var pickedEnemyName = enemyNames[i];
 
     // reset enemyHealth before starting new fight
-     enemyHealth = 50;    
+     enemyHealth = Math.floor(Math.random() * 21) + 40;    
 
     // pass the pickedEnemyName variable's value into the fight function, where it will assume the value of the enemyName parameter
     fight(pickedEnemyName);
